@@ -4,11 +4,13 @@ dotenv.config({
 });
 const { runMigrations } = await import('./runMigrations.js');
 const { injectRoles } = await import('./injectRoles.js');
+const { injectSuperAdmin } = await import('./injectSuperAdmin.js');
 
 const runScripts = async() => {
     try {
         await runMigrations();
         await injectRoles();
+        await injectSuperAdmin();
     }
     catch(err) {
         console.log("Could not run all scripts",err);
